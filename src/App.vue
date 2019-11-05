@@ -1,16 +1,26 @@
 <template>
   <div id="app">
     <p>hi, I'm an App</p>
-    <Exhibits v-bind:exhibits="exhibits" />
+    <CurrentExhibit v-bind:exhibit="current" />
+    <Exhibits 
+      v-bind:exhibits="exhibits" 
+      v-bind:nextUrl="next"
+      v-bind:prevUrl="prev"
+      v-on:select-exhibit="selectExhibit" 
+      v-on:get-more-exhibits="getMoreExhibits"
+    />
   </div>
 </template>
 
 <script>
 import Exhibits from './components/Exhibits';
+import CurrentExhibit from './components/CurrentExhibit';
+
 export default {
   name: 'app',
   components: {
-    Exhibits
+    Exhibits,
+    CurrentExhibit
   },
   data() {
     return {
@@ -29,6 +39,23 @@ export default {
         this.next = data.info.next;
         this.current = data.records[0];
       });
+  },
+  methods: {
+    selectExhibit(id) {
+      const url = `https://api.harvardartmuseums.org/exhibition/${id}?apikey=${process.env.VUE_APP_API_KEY}`
+      fetch(url)
+        .then(res => res.json())
+        .then(data => this.current = data)
+    },
+    getMoreExhibits(url) {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          this.exhibits = data.records;
+          this.next = data.info.next;
+          this.prev = data.info.prev ? data.info.prev : '';
+        })
+    }
   }
 }
 </script>
