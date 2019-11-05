@@ -1,11 +1,14 @@
 <template>
-  <section class="exhibit-container"> 
-    <h1>This is Exhibits</h1>
-    <button @click="$emit('get-more-exhibits', prevUrl)" :disabled="prevUrl === ''">Previous</button>
-    <div v-bind:key="exhibit.id" v-for="exhibit in exhibits">
-      <ExhibitMiniCard v-bind:exhibit="exhibit" v-on:select-exhibit="$emit('select-exhibit', exhibit.id)"/>
+  <section class="exhibits-container">
+    <div class="navigation-btn-container">
+    <button class='nav-btn' @click="$emit('get-more-exhibits', prevUrl)" :disabled="prevUrl === ''">Previous</button>
+    <button class='nav-btn' @click="$emit('get-more-exhibits', nextUrl)" :disabled="nextUrl === ''" >Next</button>
     </div>
-    <button @click="$emit('get-more-exhibits', nextUrl)" :disabled="nextUrl === ''" >Next</button>
+    <section class="exhibits" >
+    <div v-bind:key="exhibit.id" v-for="exhibit in exhibits" >
+      <ExhibitMiniCard v-bind:exhibit="exhibit" v-on:select-exhibit="$emit('select-exhibit', exhibit.id)" />
+    </div>  
+    </section>
   </section>
 </template>
 
@@ -21,8 +24,19 @@ export default {
 </script>
 
 <style scoped>
-  .exhibit-container {
-    border: 1px solid black;
-    border-radius: 2px;
+  .exhibits-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .exhibits {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 </style>
