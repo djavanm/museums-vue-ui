@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav>
-      <h1>Art Info</h1>
+      <h1>Havard Museum of Art Gallery</h1>
     </nav>
     <CurrentExhibit v-if="current" v-bind:exhibit="current" />
     <Exhibits 
@@ -68,6 +68,7 @@ export default {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background: #9494b1;
   }
 
   body {
@@ -75,4 +76,8 @@ export default {
     line-height: 1.4;
   }
 
+  nav {
+    text-align: center;
+    margin: 20px;
+  }
 </style>
