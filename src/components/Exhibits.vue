@@ -1,8 +1,8 @@
 <template>
   <section class="exhibits-container">
     <div class="navigation-btn-container">
-    <button class='nav-btn' @click="$emit('get-more-exhibits', prevUrl)" :disabled="prevUrl === ''">Previous</button>
-    <button class='nav-btn' @click="$emit('get-more-exhibits', nextUrl)" :disabled="nextUrl === ''" >Next</button>
+    <button class='nav-btn' @click="$emit('get-more-exhibits', prevUrl)" :disabled="prevUrl === ''">PREV</button>
+    <button class='nav-btn' @click="$emit('get-more-exhibits', nextUrl)" :disabled="nextUrl === ''" >NEXT</button>
     </div>
     <section class="exhibits" >
     <div v-bind:key="exhibit.id" v-for="exhibit in exhibits" >
@@ -38,5 +38,26 @@ export default {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+  }
+  
+  .nav-btn {
+    height: 30px;
+    width: 50px;
+    margin-left: 5px; 
+    border: 2px solid white;
+  }
+
+  .nav-btn:disabled {
+    border: 2px solid grey;
+  }
+
+  .navigation-btn-container {
+    margin-top: 20px;
+  }
+
+  .nav-btn:hover {
+    background: black;
+    color: white;
+    font-weight: bold;
   }
 </style>
