@@ -1,7 +1,9 @@
 <template>
   <article class="exhibit-mini-card">
-    <img :src="exhibit.primaryimageurl" alt="Exhibit picture" class="exhibit-picture"/>
-    <button @click="$emit('select-exhibit', exhibit.id)" class="select-exhibit-btn"> More Info </button>
+    <img 
+    :src="exhibit.primaryimageurl" alt="Exhibit picture" class="exhibit-picture"
+    @click="$emit('select-exhibit', exhibit.id)"
+    />
   </article>
 </template>
 
@@ -14,14 +16,19 @@ export default {
 
 <style scoped>
   .exhibit-mini-card {
-    height: 120px;
-    width: 120px;
-    border: 2px solid red;
-    border-radius: 2px;
+    height: 200px;
+    width: 200px;
+    margin: 5px 5px;
   }
+  
+  .exhibit-mini-card:hover {
+    box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.75);
+  }
+
   .exhibit-picture {
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
   }
 
   .select-exhibit-btn {
@@ -29,6 +36,5 @@ export default {
     height: 25px;
     width: 30px;
     color: white;
-
   }
 </style>
