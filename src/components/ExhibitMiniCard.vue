@@ -1,6 +1,7 @@
 <template>
   <article class="exhibit-mini-card">
     <img :src="exhibit.primaryimageurl" alt="Exhibit picture" class="exhibit-picture"/>
+    <button @click="$emit('select-exhibit', exhibit.id)" class="select-exhibit-btn"> More Info </button>
   </article>
 </template>
 
@@ -21,5 +22,13 @@ export default {
   .exhibit-picture {
     height: 100px;
     width: 100px;
+  }
+
+  .select-exhibit-btn {
+    background: black;
+    height: 25px;
+    width: 30px;
+    color: white;
+
   }
 </style>
