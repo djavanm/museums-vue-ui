@@ -1,9 +1,11 @@
 <template>
   <section class="exhibit-container"> 
     <h1>This is Exhibits</h1>
+    <button @click="$emit('get-more-exhibits', prevUrl)" :disabled="prevUrl === ''">Previous</button>
     <div v-bind:key="exhibit.id" v-for="exhibit in exhibits">
-      <ExhibitMiniCard v-bind:exhibit="exhibit" />
+      <ExhibitMiniCard v-bind:exhibit="exhibit" v-on:select-exhibit="$emit('select-exhibit', exhibit.id)"/>
     </div>
+    <button @click="$emit('get-more-exhibits', nextUrl)" :disabled="nextUrl === ''" >Next</button>
   </section>
 </template>
 
@@ -14,7 +16,7 @@ export default {
   components: {
     ExhibitMiniCard
   },
-  props: ["exhibits"]
+  props: ["exhibits", "nextUrl", "prevUrl"]
 }
 </script>
 
