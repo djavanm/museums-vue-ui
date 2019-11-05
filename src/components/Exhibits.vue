@@ -59,6 +59,5 @@ export default {
     background: black;
     color: white;
     font-weight: bold;
-
   }
 </style>

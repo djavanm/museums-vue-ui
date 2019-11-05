@@ -25,11 +25,11 @@ export default {
     display: flex;
     justify-content: center;
   }
-  
 
   .current-exhibit h3 {
     font-size: 1rem;
   }
+  
   .select-img {
     height: 400px;
     width: 600px;
