@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <p>hi, I'm an App</p>
-    <CurrentExhibit v-bind:exhibit="current" />
+    <nav>
+      <h1>Art Info</h1>
+    </nav>
+    <CurrentExhibit v-if="current" v-bind:exhibit="current" />
     <Exhibits 
+      v-if="exhibits.length"
       v-bind:exhibits="exhibits" 
       v-bind:nextUrl="next"
       v-bind:prevUrl="prev"
@@ -27,7 +30,7 @@ export default {
       exhibits: [],
       next: '',
       prev: '',
-      current: {}
+      current: null
     }
   },
   created() {
@@ -52,9 +55,9 @@ export default {
         .then(res => res.json())
         .then(data => {
           this.exhibits = data.records;
-          this.next = data.info.next;
+          this.next = data.info.next ? data.info.next : '';
           this.prev = data.info.prev ? data.info.prev : '';
-        })
+        });
     }
   }
 }
